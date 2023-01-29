@@ -135,19 +135,11 @@ function change_ticket_status()
 
     $existing_status_obj_of_ticket = $ticket->status;
 
+    echo '<pre>';
+    print_r($existing_status_obj_of_ticket);
+    echo  '</pre>';
+
     $new_status_name_of_ticket = 'Payment Schedule Created';
 
-    // get id of status of with this name
-
-
-    echo '<pre>';
-    echo nl2br('ticket status id: ' . $ticket->status->id . PHP_EOL);
-
-    $status = new WPSC_Status( 1 );
-    print('ticket status name: ' . $status->name);
-    echo  '</pre>';
-    
-
-    return $ticket;
 
 }
