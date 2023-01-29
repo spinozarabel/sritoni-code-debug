@@ -11,6 +11,15 @@
 */
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
+if ( is_admin() )
+{ 
+	
+  	add_action('admin_menu', 'add_menu_page');
+
+    add_action('admin_menu', 'add_submenu_page');
+
+}
+
 $hook_suffix_menu_page_madhu_custom_code =
 add_menu_page(  
             'madhu custom code',                    // $page_title, 
@@ -73,7 +82,7 @@ function ticket_details()
     $ticket = new WPSC_Ticket( $ticket_id );
 
     print_r($ticket);
-    
+
     return $ticket;
 
 }
