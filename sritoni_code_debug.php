@@ -94,7 +94,10 @@ function ticket_details()
 
 function ticket_statuses()
 {
-
+    $statuses         = WPSC_Status::find( array( 'items_per_page' => 0 ) )['results'];
+    echo '<pre>';
+    print_r($statuses);
+    echo  '</pre>';
 }
 
 function create_new_ticket()
