@@ -13,31 +13,30 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 if ( is_admin() )
 { 
-	
-  	add_action('admin_menu', 'add_menu_page');
-
-    add_action('admin_menu', 'add_submenu_page');
-
-}
-
-$hook_suffix_menu_page_madhu_custom_code =
-add_menu_page(  
+	$hook_suffix_menu_page_madhu_custom_code =
+    add_menu_page(  
             'madhu custom code',                    // $page_title, 
             'madhu custom code',                    // $menu_title,
             'manage_options',                       // $capability,
             'madhu-custom-code-main',                    // $menu_slug
             'madhu_custom_code1_submenu_page_render');      // callable function
 
+    $hook_suffix_submenu_page_madhu_custom_code1 = 
+    add_submenu_page( 
+                'madhu-custom-code',	                            // string $parent_slug
+                'madhu custom code 1',	                        // string $page_title
+                'custom code 1',                                            // string $menu_title	
+                'manage_options',                                   // string $capability	
+                'madhu-custom-code-1',                          // string $menu_slug		
+                'madhu_custom_code1_submenu_page_render' );   // callable $function = ''
+  	
+}
+
+
+
 // by keeping the parent slug and the menu slug the same, we avoid the duplicate submenu
 // clicking on the main menu or this submenu gives same results
-$hook_suffix_submenu_page_madhu_custom_code1 = 
-add_submenu_page( 
-            'madhu-custom-code',	                            // string $parent_slug
-            'madhu custom code 1',	                        // string $page_title
-            'custom code 1',                                            // string $menu_title	
-            'manage_options',                                   // string $capability	
-            'madhu-custom-code-1',                          // string $menu_slug		
-            'madhu_custom_code1_submenu_page_render' );   // callable $function = ''
+
 
 function madhu_custom_code1_submenu_page_render()
 {
