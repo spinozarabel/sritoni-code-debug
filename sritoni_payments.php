@@ -1,6 +1,6 @@
 <?php
 /**
-*Plugin Name: Sritoni Payments
+*Plugin Name: Sritoni Custom Code debug
 *Plugin URI:
 *Description: SriToni e-commerce plugin  ussing remote WooCommerce
 *Version: 2023012700
