@@ -83,7 +83,10 @@ function ticket_details()
 
     $ticket = new WPSC_Ticket( $ticket_id );
 
+    echo '<pre>';
     print_r($ticket);
+    echo  '</pre>';
+    
 
     return $ticket;
 
