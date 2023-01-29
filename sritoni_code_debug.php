@@ -122,7 +122,7 @@ function change_ticket_status()
     $ticket = new WPSC_Ticket( $ticket_id );
 
     echo '<pre>';
-    print_r('Existing ticket status id: ' . $ticket->status);
+    print_r($ticket->status);
     echo  '</pre>';
     
 
