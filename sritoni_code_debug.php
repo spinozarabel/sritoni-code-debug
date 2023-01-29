@@ -51,6 +51,7 @@ function madhu_custom_code_submenu_page_render()
             <input type="submit" name="button" 	value="ticket_statuses"/>
             <input type="submit" name="button" 	value="create_new_ticket"/>
             <input type="submit" name="button" 	value="change_ticket_status"/>
+            <input type="submit" name="button" 	value="Get_filtered_Ticket_list"/>
         </form>
 
         
@@ -75,6 +76,10 @@ function madhu_custom_code_submenu_page_render()
         case 'change_ticket_status':
             change_ticket_status();
             break;
+
+        case 'Get_filtered_Ticket_list':
+            change_ticket_status();
+            break;
         
         default:
             // do nothing
@@ -90,9 +95,13 @@ function ticket_details()
 
     echo '<pre>';
     print_r($ticket);
+    echo  '</pre>';
 
-    // print the status id of the ticket
-    print('Status ID of ticket is: ' . $ticket);
+    $status_id = $ticket->status;
+
+    echo '<pre>';
+    
+    print_r($status_id);
     echo  '</pre>';
     
 
@@ -110,17 +119,7 @@ function ticket_statuses()
 
 function create_new_ticket()
 {
-    $gs                   = get_option( 'wpsc-gs-general' );
-
-    echo '<pre>';
-    print_r($gs);
-    echo  '</pre>';
-
-	$tl_advanced          = get_option( 'wpsc-tl-ms-advanced' );
-
-    echo '<pre>';
-    print_r($tl_advanced);
-    echo  '</pre>';
+    
 
 
 }
@@ -144,6 +143,9 @@ function change_ticket_status()
     $ticket->date_updated = new DateTime();
 
     $ticket->save();
+}
 
+function Get_filtered_Ticket_list()
+{
 
 }
