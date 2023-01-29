@@ -120,8 +120,50 @@ function ticket_statuses()
 function create_new_ticket()
 {
     
+    
+    // create ticket data.
+	$data = array();
+
+	// customer name.
+	$name = 'Sritoni1 Moodle1';
+    $email = 'sritoni1@headstart.edu.in';
+    $data['customer'] = 0;
+
+    // extract custom field data.
+    foreach ( WPSC_Custom_Field::$custom_fields as $cf ) {
+
+        if ( ! in_array( $cf->field, array( 'ticket', 'agentonly' ) )  ) {
+            continue;
+        }
+
+    $description_attachments = '';
+
+    $description = "This is a test ticket created using plugin php code";
+    $subject = "This is s test for a ticket creation using plugin code";
+    $category_id = 1;
+
+    $data['source']     = 'MA_plugin_code';
+	$data['ip_address'] = WPSC_DF_IP_Address::get_current_user_ip();
+	$data['browser']    = WPSC_DF_Browser::get_user_browser();
+	$data['os']         = WPSC_DF_OS::get_user_platform();
 
 
+			// create new ticket.
+			$ticket = WPSC_Ticket::insert( $data );
+
+			// Create report thread.
+			$thread = WPSC_Thread::insert(
+				array(
+					'ticket'      => $ticket->id,
+					'customer'    => $ticket->customer->id,
+					'type'        => 'report',
+					'body'        => $description,
+					'attachments' => $description_attachments,
+					'source'      => 'MA_plugin_code',
+				)
+			);
+
+    }
 }
 
 
