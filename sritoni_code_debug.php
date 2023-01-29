@@ -50,6 +50,7 @@ function madhu_custom_code_submenu_page_render()
             <input type="submit" name="button" 	value="ticket_details"/>
             <input type="submit" name="button" 	value="ticket_statuses"/>
             <input type="submit" name="button" 	value="create_new_ticket"/>
+            <input type="submit" name="button" 	value="change_ticket_status"/>
         </form>
 
         
@@ -69,7 +70,11 @@ function madhu_custom_code_submenu_page_render()
 
         case 'create_new_ticket':
             create_new_ticket();
-            break;	
+            break;
+            
+        case 'change_ticket_status':
+            change_ticket_status();
+            break;
         
         default:
             // do nothing
@@ -85,6 +90,9 @@ function ticket_details()
 
     echo '<pre>';
     print_r($ticket);
+
+    // print the status id of the ticket
+    print('Status ID of ticket is: ' . $ticket);
     echo  '</pre>';
     
 
@@ -105,3 +113,19 @@ function create_new_ticket()
 
 }
 
+
+function change_ticket_status()
+{
+
+    $ticket_id = 2;
+
+    $ticket = new WPSC_Ticket( $ticket_id );
+
+    echo '<pre>';
+    print_r('Existing ticket status id: ' . $ticket->status);
+    echo  '</pre>';
+    
+
+    return $ticket;
+
+}
