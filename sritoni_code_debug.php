@@ -139,7 +139,11 @@ function change_ticket_status()
     print_r($existing_status_obj_of_ticket);
     echo  '</pre>';
 
-    $new_status_name_of_ticket = 'Payment Schedule Created';
+    $ticket->status = 5;
+
+    $ticket->date_updated = new DateTime();
+
+    $ticket->save();
 
 
 }
