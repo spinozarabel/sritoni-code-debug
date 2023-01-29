@@ -110,6 +110,18 @@ function ticket_statuses()
 
 function create_new_ticket()
 {
+    $gs                   = get_option( 'wpsc-gs-general' );
+
+    echo '<pre>';
+    print_r($gs);
+    echo  '</pre>';
+
+	$tl_advanced          = get_option( 'wpsc-tl-ms-advanced' );
+
+    echo '<pre>';
+    print_r($tl_advanced);
+    echo  '</pre>';
+
 
 }
 
@@ -120,6 +132,13 @@ function change_ticket_status()
     $ticket_id = 2;
 
     $ticket = new WPSC_Ticket( $ticket_id );
+
+    $existing_status_obj_of_ticket = $ticket->status;
+
+    $new_status_name_of_ticket = 'Payment Schedule Created';
+
+    // get id of status of with this name
+
 
     echo '<pre>';
     echo nl2br('ticket status id: ' . $ticket->status->id . PHP_EOL);
