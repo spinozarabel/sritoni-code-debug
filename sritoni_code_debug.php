@@ -135,6 +135,7 @@ function create_new_ticket()
         if ( ! in_array( $cf->field, array( 'ticket', 'agentonly' ) )  ) {
             continue;
         }
+    }
 
     $description_attachments = '';
 
@@ -164,7 +165,6 @@ function create_new_ticket()
 			);
 
     }
-}
 
 
 function change_ticket_status()
