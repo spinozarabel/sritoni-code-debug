@@ -13,22 +13,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 if ( is_admin() )
 { 
-	$hook_suffix_menu_page_madhu_custom_code =
-    add_menu_page(  
-            'madhu custom code',                    // $page_title, 
-            'madhu custom code',                    // $menu_title,
-            'manage_options',                       // $capability,
-            'madhu-custom-code-main',                    // $menu_slug
-            'madhu_custom_code1_submenu_page_render');      // callable function
-
-    $hook_suffix_submenu_page_madhu_custom_code1 = 
-    add_submenu_page( 
-                'madhu-custom-code',	                            // string $parent_slug
-                'madhu custom code 1',	                        // string $page_title
-                'custom code 1',                                            // string $menu_title	
-                'manage_options',                                   // string $capability	
-                'madhu-custom-code-1',                          // string $menu_slug		
-                'madhu_custom_code1_submenu_page_render' );   // callable $function = ''
+    add_action('admin_menu', 'add_submenu_page_callback');
   	
 }
 
@@ -38,7 +23,25 @@ if ( is_admin() )
 // clicking on the main menu or this submenu gives same results
 
 
-function madhu_custom_code1_submenu_page_render()
+function add_submenu_page_callback()
+{
+    /*
+    add_submenu_page( string $parent_slug, string $page_title, string $menu_title, string $capability, string $menu_slug, callable $function = '' )
+    *					        parent slug		 newsubmenupage	 submenu title  	  capability			new submenu slug		callback for display page
+    */
+    $hook_suffix_menu_page_madhu_custom_code = 
+        add_submenu_page(   'users.php',                                // parent menu slug	
+                            'my-code-test',                             // page title	
+                            'my-code-test',                             // sub menu title	
+                            'manage_options',                           // capability
+                            'my-code-test',                             // sub menu slug		
+                            'madhu_custom_code_submenu_page_render'     // callback function 
+                        );
+    return;
+}
+
+
+function madhu_custom_code_submenu_page_render()
 {
     // this is for rendering the API test onto the sritoni_tools page
     ?>
