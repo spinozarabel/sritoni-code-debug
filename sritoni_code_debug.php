@@ -122,8 +122,10 @@ function change_ticket_status()
     $ticket = new WPSC_Ticket( $ticket_id );
 
     echo '<pre>';
-    print('ticket status id: ' . $ticket->status->id);
-    print('ticket status name: ' . $ticket->status->name);
+    echo nl2br('ticket status id: ' . $ticket->status->id . PHP_EOL);
+
+    $status = new WPSC_Status( 1 );
+    print('ticket status name: ' . $status->name);
     echo  '</pre>';
     
 
