@@ -111,10 +111,18 @@ function ticket_details($ticket_id)
 
 function ticket_statuses()
 {
-    $statuses         = WPSC_Status::find( array( 'items_per_page' => 0 ) )['results'];
-    echo '<pre>';
-    print_r($statuses);
-    echo  '</pre>';
+    // extract custom field data.
+    foreach ( WPSC_Custom_Field::$custom_fields as $cf ) {
+
+        if ( ! in_array( $cf->field, array( 'ticket', 'agentonly' ) )  ) {
+            continue;
+        
+        }
+        echo '<pre>';
+        print_r($cf);
+        echo  '</pre>';
+    }
+    
 }
 
 function create_new_ticket()
@@ -134,13 +142,14 @@ function create_new_ticket()
 
         if ( ! in_array( $cf->field, array( 'ticket', 'agentonly' ) )  ) {
             continue;
+        
         }
     }
 
     $description_attachments = '';
 
     $description = "This is a test ticket created using plugin php code";
-    $$data['subject'] = "This is s test for a ticket creation using plugin code";
+    $$data['subject'] = "This is a test for a ticket creation using plugin code";
     $data['last_reply_on'] = ( new DateTime() )->format( 'Y-m-d H:i:s' );
 
     $category_id = 1;
@@ -169,17 +178,17 @@ function create_new_ticket()
 
     // Create report thread.
     $thread = WPSC_Thread::insert(
-        array(
-            'ticket'      => $ticket->id,
-            'customer'    => $ticket->customer->id,
-            'type'        => 'report',
-            'body'        => $description,
-            'attachments' => $description_attachments,
-            'source'      => 'MA_plugin_code',
-        )
-    );
+                                    array(
+                                        'ticket'      => $ticket->id,
+                                        'customer'    => $ticket->customer->id,
+                                        'type'        => 'report',
+                                        'body'        => $description,
+                                        'attachments' => $description_attachments,
+                                        'source'      => 'MA_plugin_code',
+                                    )
+                            );
 
-    }
+}
 
 
 function change_ticket_status()
