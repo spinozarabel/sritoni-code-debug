@@ -52,17 +52,19 @@ function madhu_custom_code_submenu_page_render()
             <input type="submit" name="button" 	value="create_new_ticket"/>
             <input type="submit" name="button" 	value="change_ticket_status"/>
             <input type="submit" name="button" 	value="Get_filtered_Ticket_list"/>
+            <input type="number" id="ticket_id" name="ticket_id" min="1" max="10000">
         </form>
 
         
     <?php
 
     $button = sanitize_text_field( $_POST['button'] );
+    $ticket_id = sanitize_text_field( $_POST['ticket_id'] );
 
     switch ($button) 
     {
         case 'ticket_details':
-            ticket_details();
+            ticket_details($ticket_id);
             break;
 
         case 'ticket_statuses':
@@ -89,8 +91,6 @@ function madhu_custom_code_submenu_page_render()
 
 function ticket_details()
 {
-    $ticket_id = 2;
-
     $ticket = new WPSC_Ticket( $ticket_id );
 
     echo '<pre>';
