@@ -127,7 +127,7 @@ function create_new_ticket()
 	// customer name.
 	$name = 'Sritoni1 Moodle1';
     $email = 'sritoni1@headstart.edu.in';
-    $data['customer'] = 0;
+    $data['customer'] = 5;
 
     // extract custom field data.
     foreach ( WPSC_Custom_Field::$custom_fields as $cf ) {
@@ -140,7 +140,9 @@ function create_new_ticket()
     $description_attachments = '';
 
     $description = "This is a test ticket created using plugin php code";
-    $subject = "This is s test for a ticket creation using plugin code";
+    $$data['subject'] = "This is s test for a ticket creation using plugin code";
+    $data['last_reply_on'] = ( new DateTime() )->format( 'Y-m-d H:i:s' );
+
     $category_id = 1;
 
     $data['source']     = 'MA_plugin_code';
