@@ -151,20 +151,33 @@ function create_new_ticket()
 	$data['os']         = WPSC_DF_OS::get_user_platform();
 
 
-			// create new ticket.
-			$ticket = WPSC_Ticket::insert( $data );
+    // create new ticket.
+    $ticket = WPSC_Ticket::insert( $data );
 
-			// Create report thread.
-			$thread = WPSC_Thread::insert(
-				array(
-					'ticket'      => $ticket->id,
-					'customer'    => $ticket->customer->id,
-					'type'        => 'report',
-					'body'        => $description,
-					'attachments' => $description_attachments,
-					'source'      => 'MA_plugin_code',
-				)
-			);
+    if ( ! $ticket ) {
+        echo '<pre>';
+        print('Ticket could not be created');
+        echo  '</pre>';
+       
+    }
+    else
+    {
+        echo '<pre>';
+    print_r($ticket);
+    echo  '</pre>';
+    }
+
+    // Create report thread.
+    $thread = WPSC_Thread::insert(
+        array(
+            'ticket'      => $ticket->id,
+            'customer'    => $ticket->customer->id,
+            'type'        => 'report',
+            'body'        => $description,
+            'attachments' => $description_attachments,
+            'source'      => 'MA_plugin_code',
+        )
+    );
 
     }
 
