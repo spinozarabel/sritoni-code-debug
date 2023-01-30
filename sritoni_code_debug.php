@@ -89,7 +89,7 @@ function madhu_custom_code_submenu_page_render()
     }
 }
 
-function ticket_details()
+function ticket_details($ticket_id)
 {
     $ticket = new WPSC_Ticket( $ticket_id );
 
