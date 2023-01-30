@@ -49,6 +49,8 @@ function madhu_custom_code_submenu_page_render()
         <form action="" method="post" id="form1">
             <input type="submit" name="button" 	value="ticket_details"/>
             <input type="submit" name="button" 	value="custom_fields"/>
+            <input type="submit" name="button" 	value="statuses"/>
+            <input type="submit" name="button" 	value="categories"/>
             <input type="submit" name="button" 	value="create_new_ticket"/>
             <input type="submit" name="button" 	value="change_ticket_status"/>
             <input type="submit" name="button" 	value="Get_filtered_Ticket_list"/>
@@ -69,6 +71,14 @@ function madhu_custom_code_submenu_page_render()
 
         case 'custom_fields':
             custom_fields();
+            break;
+
+        case 'statuses':
+            statuses();
+            break;
+
+        case 'categories':
+            categories();
             break;
 
         case 'create_new_ticket':
@@ -124,6 +134,35 @@ function custom_fields()
     }
     
 }
+
+
+function statuses()
+{
+    // Get all the statuses
+    $statuses = WPSC_Status::find( array( 'items_per_page' => 0 ) )['results'];
+    foreach ( $statuses as $status ) {
+        echo '<pre>';
+        print_r($status);
+        echo  '</pre>';
+    }
+    
+}
+
+
+function categories()
+{
+    // Get all the statuses
+    $categories = WPSC_Category::find( array( 'items_per_page' => 0 ) )['results'];
+    foreach ( $categories as $category ) {
+        echo '<pre>';
+        print_r($category);
+        echo  '</pre>';
+    }
+    
+}
+
+
+
 
 function create_new_ticket()
 {
