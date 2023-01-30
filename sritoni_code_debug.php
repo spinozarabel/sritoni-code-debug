@@ -48,7 +48,7 @@ function madhu_custom_code_submenu_page_render()
         <h1> Click on button to test corresponding Server connection and API</h1>
         <form action="" method="post" id="form1">
             <input type="submit" name="button" 	value="ticket_details"/>
-            <input type="submit" name="button" 	value="ticket_statuses"/>
+            <input type="submit" name="button" 	value="custom_fields"/>
             <input type="submit" name="button" 	value="create_new_ticket"/>
             <input type="submit" name="button" 	value="change_ticket_status"/>
             <input type="submit" name="button" 	value="Get_filtered_Ticket_list"/>
@@ -67,8 +67,8 @@ function madhu_custom_code_submenu_page_render()
             ticket_details($ticket_id);
             break;
 
-        case 'ticket_statuses':
-            ticket_statuses();
+        case 'custom_fields':
+            custom_fields();
             break;
 
         case 'create_new_ticket':
@@ -109,7 +109,7 @@ function ticket_details($ticket_id)
 
 }
 
-function ticket_statuses()
+function custom_fields()
 {
     // extract custom field data.
     foreach ( WPSC_Custom_Field::$custom_fields as $cf ) {
