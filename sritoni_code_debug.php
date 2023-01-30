@@ -132,6 +132,17 @@ function custom_fields()
         print_r($cf);
         echo  '</pre>';
     }
+
+    unset ($cf);
+
+    // to find 
+    $slug = 'status';
+    $cf = WPSC_Custom_Field::get_cf_by_slug( $slug );
+
+    echo '<pre>';
+    print ("custom field object corresponding to slug: " . $slug);
+    print_r($cf);
+    echo  '</pre>';
     
 }
 
