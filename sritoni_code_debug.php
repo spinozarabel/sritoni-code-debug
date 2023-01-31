@@ -221,6 +221,8 @@ function create_new_ticket()
 	// $data['browser']    = WPSC_DF_Browser::get_user_browser();
 	// $data['os']         = WPSC_DF_OS::get_user_platform();
 
+    $data['is_active'] = 1;
+
 
     // create new ticket.
     $ticket = WPSC_Ticket::insert( $data );
