@@ -115,7 +115,11 @@ function ticket_details($ticket_id)
     echo  '</pre>';
     
 
-    return $ticket;
+    $current_user = WPSC_Current_User::$current_user;
+    echo '<pre>';
+    print_r($current_user);
+    echo  '</pre>';
+
 
 }
 
