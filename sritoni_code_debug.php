@@ -114,12 +114,13 @@ function ticket_details($ticket_id)
     print_r($status_id);
     echo  '</pre>';
     
+    // get customer object based on customer's registered email
     $email = 'sritoni1@headstart.edu.in';
     $customer = WPSC_Customer::get_by_email( $email );
 
     echo nl2br("Customer details fetched using email: " . $email . " \n");
     echo '<pre>';
-    print_r($customer);
+    print_r($customer->user);
     echo  '</pre>';
 
 
@@ -183,17 +184,17 @@ function categories()
 
 function create_new_ticket()
 {
-    
-    
-    // create ticket data.
+    // ticket data.
 	$data = array();
 
 	// customer name. Not used currently
 	$name = 'Sritoni1 Moodle1';
     $email = 'sritoni1@headstart.edu.in';
 
+    $customer = WPSC_Customer::get_by_email( $email );
+
     // customer's WP ID
-    $data['customer'] = 5;
+    $data['customer'] = $customer->user->ID;
 
     // extract custom field data.
     foreach ( WPSC_Custom_Field::$custom_fields as $cf ) {
