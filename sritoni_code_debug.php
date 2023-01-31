@@ -114,10 +114,12 @@ function ticket_details($ticket_id)
     print_r($status_id);
     echo  '</pre>';
     
+    $email = 'sritoni1@headstart.edu.in';
+    $customer = WPSC_Current_User::get_by_email( $email );
 
-    $current_user = WPSC_Current_User::$current_user;
+    echo nl2br("Customer details fetched using email: " . $email . " \n");
     echo '<pre>';
-    print_r($current_user);
+    print_r($customer);
     echo  '</pre>';
 
 
@@ -186,9 +188,11 @@ function create_new_ticket()
     // create ticket data.
 	$data = array();
 
-	// customer name.
+	// customer name. Not used currently
 	$name = 'Sritoni1 Moodle1';
     $email = 'sritoni1@headstart.edu.in';
+
+    // customer's WP ID
     $data['customer'] = 5;
 
     // extract custom field data.
@@ -198,6 +202,10 @@ function create_new_ticket()
             continue;
         
         }
+
+        if ( method_exists( $cf->type, 'get_default_value' ) ) {
+            $data[ $cf->slug ] = $cf->type::get_default_value( $cf );
+        }
     }
 
     $description_attachments = '';
@@ -206,12 +214,11 @@ function create_new_ticket()
     $$data['subject'] = "This is a test for a ticket creation using plugin code";
     $data['last_reply_on'] = ( new DateTime() )->format( 'Y-m-d H:i:s' );
 
-    $category_id = 1;
 
     $data['source']     = 'MA_plugin_code';
-	$data['ip_address'] = WPSC_DF_IP_Address::get_current_user_ip();
-	$data['browser']    = WPSC_DF_Browser::get_user_browser();
-	$data['os']         = WPSC_DF_OS::get_user_platform();
+	// $data['ip_address'] = WPSC_DF_IP_Address::get_current_user_ip();
+	// $data['browser']    = WPSC_DF_Browser::get_user_browser();
+	// $data['os']         = WPSC_DF_OS::get_user_platform();
 
 
     // create new ticket.
@@ -226,8 +233,8 @@ function create_new_ticket()
     else
     {
         echo '<pre>';
-    print_r($ticket);
-    echo  '</pre>';
+        print_r($ticket);
+        echo  '</pre>';
     }
 
     // Create report thread.
