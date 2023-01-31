@@ -115,7 +115,7 @@ function ticket_details($ticket_id)
     echo  '</pre>';
     
     $email = 'sritoni1@headstart.edu.in';
-    $customer = WPSC_Current_User::get_by_email( $email );
+    $customer = WPSC_Customer::get_by_email( $email );
 
     echo nl2br("Customer details fetched using email: " . $email . " \n");
     echo '<pre>';
