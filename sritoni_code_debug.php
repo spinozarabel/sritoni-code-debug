@@ -224,7 +224,11 @@ function create_new_ticket()
     $data['is_active'] = 1;
 
 
-    // create new ticket.
+    echo '<pre>';
+    print_r($data);
+    echo  '</pre>';
+
+/*
     $ticket = WPSC_Ticket::insert( $data );
 
     if ( ! $ticket ) {
@@ -251,6 +255,7 @@ function create_new_ticket()
                                         'source'      => 'MA_plugin_code',
                                     )
                             );
+*/
 
 }
 
