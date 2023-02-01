@@ -123,6 +123,22 @@ function ticket_details($ticket_id)
     print_r($customer->id);
     echo  '</pre>';
 
+    $category_name = 'Testing';
+
+    // get the category id from the name above
+    $filter_array = array(
+        'slug'    => 'name',
+        'compare' => '=',
+        'val'     => 'Testing',
+    );
+    
+    $category_object = WPSC_Category::find($filter_array);
+
+    echo '<pre>';
+    print_r($category_object);
+    echo  '</pre>';
+
+
 
 }
 
@@ -224,6 +240,16 @@ function create_new_ticket()
 
     $data['is_active'] = 1;
     $data['user_type'] = 'registered';
+
+    $category_name = 'Testing';
+
+    // get the category id from the name above
+    $filter_array = array(
+        'slug'    => 'name',
+        'compare' => '=',
+        'val'     => 'Testing',
+    );
+    $category_object = WPSC_Category::find($filter_array);
 
     unset($data['description']);
     unset($data['attachments']);
