@@ -127,11 +127,16 @@ function ticket_details($ticket_id)
 
     // get the category id from the name above
     $filter_array = array(
-        'slug'    => 'name',
-        'compare' => '=',
-        'val'     => 'Testing',
-    );
-    
+                            'meta_query' => array(
+                                                    'relation' => 'AND',
+                                                    array(
+                                                        'slug'    => 'name',
+                                                        'compare' => '=',
+                                                        'val'     => $category_name,
+                                                    ),
+                            )
+                            );
+
     $category_object = WPSC_Category::find($filter_array);
 
     echo '<pre>';
