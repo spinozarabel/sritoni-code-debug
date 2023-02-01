@@ -194,7 +194,7 @@ function create_new_ticket()
     $customer = WPSC_Customer::get_by_email( $email );
 
     // customer's WP ID
-    $data['customer'] = $customer->user->ID;
+    $data['customer'] = $customer->id;
 
     // extract custom field data.
     foreach ( WPSC_Custom_Field::$custom_fields as $cf ) {
