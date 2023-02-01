@@ -214,6 +214,7 @@ function create_new_ticket()
     $description = "This is a test ticket created using plugin php code";
     $$data['subject'] = "This is a test for a ticket creation using plugin code";
     $data['last_reply_on'] = ( new DateTime() )->format( 'Y-m-d H:i:s' );
+    $data['date_closed'] = '0000-00-00 00:00:00';
 
 
     $data['source']     = 'MA_plugin_code';
