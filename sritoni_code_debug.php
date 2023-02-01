@@ -223,6 +223,9 @@ function create_new_ticket()
 
     $data['is_active'] = 1;
 
+    unset($data['description']);
+    unset($data['attachments']);
+
 
     echo '<pre>';
     print_r($data);
