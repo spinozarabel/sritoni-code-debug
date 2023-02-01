@@ -120,7 +120,7 @@ function ticket_details($ticket_id)
 
     echo nl2br("Customer details fetched using email: " . $email . " \n");
     echo '<pre>';
-    print_r($customer);
+    print_r($customer->id);
     echo  '</pre>';
 
 
