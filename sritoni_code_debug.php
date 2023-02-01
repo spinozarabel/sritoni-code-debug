@@ -227,12 +227,6 @@ function create_new_ticket()
     unset($data['description']);
     unset($data['attachments']);
 
-
-    echo '<pre>';
-    print_r($data);
-    echo  '</pre>';
-
-/*
     $ticket = WPSC_Ticket::insert( $data );
 
     if ( ! $ticket ) {
@@ -259,7 +253,6 @@ function create_new_ticket()
                                         'source'      => 'MA_plugin_code',
                                     )
                             );
-*/
 
 }
 
