@@ -233,7 +233,8 @@ function create_new_ticket()
     $description_attachments = '';
 
     $description = "This is a test ticket created using plugin php code";
-    $$data['subject'] = "HSEA Admission";
+
+    $data['subject'] = "HSEA Admission";
     $data['last_reply_on'] = ( new DateTime() )->format( 'Y-m-d H:i:s' );
     $data['date_closed'] = '0000-00-00 00:00:00';
 
@@ -246,15 +247,24 @@ function create_new_ticket()
     $data['is_active'] = 1;
     $data['user_type'] = 'registered';
 
+    
     $category_name = 'Testing';
 
     // get the category id from the name above
     $filter_array = array(
-        'slug'    => 'name',
-        'compare' => '=',
-        'val'     => 'Testing',
-    );
-    $category_object = WPSC_Category::find($filter_array);
+                            'meta_query' => array(
+                                                    'relation' => 'AND',
+                                                    array(
+                                                        'slug'    => 'name',
+                                                        'compare' => '=',
+                                                        'val'     => $category_name,
+                                                    ),
+                                            )
+                    );
+
+    $results = WPSC_Category::find($filter_array);
+
+    $data['category'] = $results['results'][0]->id;
 
     unset($data['description']);
     unset($data['attachments']);
