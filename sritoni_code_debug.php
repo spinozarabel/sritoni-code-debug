@@ -120,7 +120,7 @@ function ticket_details($ticket_id)
 
     echo nl2br("Customer details fetched using email: " . $email . " \n");
     echo '<pre>';
-    print_r($customer->user->ID);
+    print_r($customer->user);
     echo  '</pre>';
 
 
@@ -223,6 +223,7 @@ function create_new_ticket()
 	// $data['os']         = WPSC_DF_OS::get_user_platform();
 
     $data['is_active'] = 1;
+    $data['user_type'] = 'registered';
 
     unset($data['description']);
     unset($data['attachments']);
