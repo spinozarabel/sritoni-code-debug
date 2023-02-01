@@ -140,7 +140,7 @@ function ticket_details($ticket_id)
     $category_object = WPSC_Category::find($filter_array);
 
     echo '<pre>';
-    print_r($category_object['results'][0]);
+    print_r($category_object['results'][0]->id);
     echo  '</pre>';
 
 
