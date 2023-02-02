@@ -279,6 +279,10 @@ function create_new_ticket()
     }
     else
     {
+        // ticket was successfully created
+        // Now to assign agent if unassigned, based on assign agent rules
+        WPSC_Assign_Agent::assign_agents($ticket);
+
         echo '<pre>';
         print_r($ticket);
         echo  '</pre>';
