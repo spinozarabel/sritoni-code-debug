@@ -283,25 +283,26 @@ function create_new_ticket()
     {
         // ticket was successfully created
         // Now to assign agent if unassigned, based on assign agent rules
-        WPSC_Assign_Agent::assign_agents($ticket);
+        // WPSC_Assign_Agent::assign_agents($ticket);
+
+        do_action( 'wpsc_create_new_ticket', $ticket );
+
+        // Create report thread.
+        $thread = WPSC_Thread::insert(
+                                        array(
+                                            'ticket'      => $ticket->id,
+                                            'customer'    => $ticket->customer->id,
+                                            'type'        => 'report',
+                                            'body'        => $description,
+                                            'attachments' => $description_attachments,
+                                            'source'      => 'MA_plugin_code',
+                                        )
+        );
 
         echo '<pre>';
         print_r($ticket);
         echo  '</pre>';
     }
-
-    // Create report thread.
-    $thread = WPSC_Thread::insert(
-                                    array(
-                                        'ticket'      => $ticket->id,
-                                        'customer'    => $ticket->customer->id,
-                                        'type'        => 'report',
-                                        'body'        => $description,
-                                        'attachments' => $description_attachments,
-                                        'source'      => 'MA_plugin_code',
-                                    )
-                            );
-
 }
 
 
