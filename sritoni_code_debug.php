@@ -240,9 +240,9 @@ function create_new_ticket()
 
 
     $data['source']     = 'MA_plugin_code';
-	// $data['ip_address'] = WPSC_DF_IP_Address::get_current_user_ip();
-	// $data['browser']    = WPSC_DF_Browser::get_user_browser();
-	// $data['os']         = WPSC_DF_OS::get_user_platform();
+	$data['ip_address'] = WPSC_DF_IP_Address::get_current_user_ip();
+	$data['browser']    = WPSC_DF_Browser::get_user_browser();
+	$data['os']         = WPSC_DF_OS::get_user_platform();
 
     $data['is_active'] = 1;
     $data['user_type'] = 'registered';
@@ -268,6 +268,9 @@ function create_new_ticket()
 
     unset($data['description']);
     unset($data['attachments']);
+
+    // set $data['last_reply_by'] as the customer since form is filled by customer
+    $ticket->last_reply_by = $customer->id;
 
     $ticket = WPSC_Ticket::insert( $data );
 
