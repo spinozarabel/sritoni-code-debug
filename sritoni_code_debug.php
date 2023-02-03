@@ -247,6 +247,8 @@ function create_new_ticket()
     $data['is_active'] = 1;
     $data['user_type'] = 'registered';
 
+    // last reply is by customer since she filled the form and submitted
+    $data['last_reply_by'] = $customer->id;
     
     $category_name = 'Testing';
 
@@ -268,9 +270,6 @@ function create_new_ticket()
 
     unset($data['description']);
     unset($data['attachments']);
-
-    // set $data['last_reply_by'] as the customer since form is filled by customer
-    $ticket->last_reply_by = $customer->id;
 
     $ticket = WPSC_Ticket::insert( $data );
 
