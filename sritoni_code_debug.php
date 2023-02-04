@@ -2,7 +2,7 @@
 /**
 *Plugin Name: Sritoni Custom Code debug
 *Plugin URI:
-*Description: SriToni e-commerce plugin  ussing remote WooCommerce
+*Description: This is a plugin templated for custom php code development on rmeote server
 *Version: 2023012700
 *Author: Madhu Avasarala
 *Author URI: http://sritoni.org
@@ -152,10 +152,10 @@ function custom_fields()
     // extract custom field data.
     foreach ( WPSC_Custom_Field::$custom_fields as $cf ) {
 
-        if ( ! in_array( $cf->field, array( 'ticket', 'agentonly' ) )  ) {
-            continue;
+        //if ( ! in_array( $cf->field, array( 'ticket', 'agentonly' ) )  ) {
+           // continue;
         
-        }
+        //}
         echo '<pre>';
         print_r($cf);
         echo  '</pre>';
