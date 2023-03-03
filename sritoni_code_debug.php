@@ -115,6 +115,8 @@ function get_status_id_given_name( string $status_name): ? int
     // get an array of all statuses
     $array_of_status_objects = WPSC_Status::find( array( 'items_per_page' => 0 ) )['results'];
 
+    $status_name = "Closed";
+
     foreach ($array_of_status_objects as $status_obj)
     {
         if ( $status_name == $status_obj->name)
