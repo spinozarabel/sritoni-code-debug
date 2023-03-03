@@ -107,19 +107,25 @@ function madhu_custom_code_submenu_page_render()
     }
 }
 
-function get_status_id_given_name($status_name)
+/**
+ *  Given the name of a status as a string the function returns its ID if it exists. If not returns null
+ */
+function get_status_id_given_name( string $status_name): ? int
 {
     // get an array of all statuses
-    $statuses = WPSC_Status::find( array( 'items_per_page' => 0 ) )['results'];
+    $array_of_status_objects = WPSC_Status::find( array( 'items_per_page' => 0 ) )['results'];
 
-    foreach ($statuses as $status_obj)
+    foreach ($array_of_status_objects as $status_obj)
     {
         if ( $status_obj->name == $status_name )
         {
             echo '<pre>';
             print("Status name - " . $status_name . " Corresponds to Status ID: " . $status_obj->id);
             echo  '</pre>';
+
+            return $status_obj->id;
         }
+        return null;
     }
 }
 
