@@ -310,9 +310,9 @@ function create_new_ticket()
 function change_ticket_status()
 {
 
-    $ticket_id = 34;
+    $ticket_id = 2;
 
-    $desired_status_id = 1;
+    $desired_status_id = 5;
 
     $ticket = new WPSC_Ticket( $ticket_id );
 
@@ -323,7 +323,7 @@ function change_ticket_status()
 	WPSC_Individual_Ticket::$ticket = $ticket;
 
     if ( $desired_status_id && $ticket->status->id != $desired_status_id ) {
-        WPSC_Individual_Ticket::change_status( $ticket->status->id, $desired_status_id, 1 );
+        WPSC_Individual_Ticket::change_status( $ticket->status->id, $desired_status_id, 11 );
     }
 
     // $ticket->status = 5;
