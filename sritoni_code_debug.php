@@ -310,21 +310,27 @@ function create_new_ticket()
 function change_ticket_status()
 {
 
-    $ticket_id = 2;
+    $ticket_id = 34;
+
+    $desired_status_id = 5;
 
     $ticket = new WPSC_Ticket( $ticket_id );
 
-    $existing_status_obj_of_ticket = $ticket->status;
+    if ( ! $ticket->id ) {
+        return;
+    }
 
-    echo '<pre>';
-    print_r($existing_status_obj_of_ticket);
-    echo  '</pre>';
+	WPSC_Individual_Ticket::$ticket = $ticket;
 
-    $ticket->status = 5;
+    if ( $desired_status_id && $ticket->status->id != $desired_status_id ) {
+        WPSC_Individual_Ticket::change_status( $ticket->status->id, $desired_status_id, $ticket->customer );
+    }
 
-    $ticket->date_updated = new DateTime();
+    // $ticket->status = 5;
 
-    $ticket->save();
+    // $ticket->date_updated = new DateTime();
+
+    // $ticket->save();
 }
 
 function Get_filtered_Ticket_list()
@@ -344,10 +350,10 @@ function Get_filtered_Ticket_list()
                         )
 );
 
-$results = WPSC_Ticket::find($filter_array);
+$results = WPSC_Ticket::find( $filter_array );
 echo '<pre>';
 print( "All tickets with status id of 5" );
-    print_r($results);
-    echo  '</pre>';
+print_r($results);
+echo  '</pre>';
 
 }
