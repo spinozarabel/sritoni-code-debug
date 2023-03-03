@@ -110,7 +110,7 @@ function madhu_custom_code_submenu_page_render()
 /**
  *  Given the name of a status as a string the function returns its ID if it exists. If not returns null
  */
-function get_status_id_given_name( $status_name)
+function get_status_id_given_name(string  $status_name): ? int
 {
     // get an array of all statuses
     $status_objects = WPSC_Status::find( array( 'items_per_page' => 0 ) )['results'];
@@ -126,11 +126,10 @@ function get_status_id_given_name( $status_name)
             echo  '</pre>';
 
             return $status_obj->id;
-        }
-        
-        
+        } 
     }
 
+    return null;
 }
 
 function ticket_details($ticket_id)
