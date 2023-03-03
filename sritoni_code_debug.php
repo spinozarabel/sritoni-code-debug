@@ -110,7 +110,7 @@ function ticket_details($ticket_id)
     $status_id = $ticket->status;
 
     echo '<pre>';
-    
+    print( "The status object of above ticket is displayed below using its ID obtained from ticket details" );
     print_r($status_id);
     echo  '</pre>';
     
