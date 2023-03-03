@@ -120,7 +120,7 @@ function ticket_details($ticket_id)
 
     echo nl2br("Customer details fetched using email: " . $email . " \n");
     echo '<pre>';
-    print_r($customer->id);
+    print("customer ID having above email: " . $customer->id );
     echo  '</pre>';
 
     $category_name = 'Testing';
@@ -140,7 +140,7 @@ function ticket_details($ticket_id)
     $category_object = WPSC_Category::find($filter_array);
 
     echo '<pre>';
-    print_r($category_object['results'][0]->id);
+    print( "category name is Testing. Its ID is: " . $category_object['results'][0]->id );
     echo  '</pre>';
 
 
@@ -152,10 +152,11 @@ function custom_fields()
     // extract custom field data.
     foreach ( WPSC_Custom_Field::$custom_fields as $cf ) {
 
-        //if ( ! in_array( $cf->field, array( 'ticket', 'agentonly' ) )  ) {
-           // continue;
+        // get only ticket fields, that is not agent only fields
+        if ( ! in_array( $cf->field, array( 'ticket', 'agentonly' ) )  ) {
+            continue;
         
-        //}
+        }
         echo '<pre>';
         print_r($cf);
         echo  '</pre>';
