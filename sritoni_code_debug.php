@@ -17,7 +17,17 @@ if ( is_admin() )
   	
 }
 
+add_action( 'wpsc_change_ticket_status',  'my_wpsc_change_ticket_status_callback',  10, 4);
 
+
+
+function my_wpsc_change_ticket_status_callback( $ticket, $prev, $new, $customer_id)
+{
+    echo '<pre>';
+            print("Ticket ID - " . $ticket->id . " Old Status ID: " . $prev . " was changed to new status ID: " . $new);
+            print( "This information was derived from wpsc_change_status action callback");
+            echo  '</pre>';
+}
 
 // by keeping the parent slug and the menu slug the same, we avoid the duplicate submenu
 // clicking on the main menu or this submenu gives same results
