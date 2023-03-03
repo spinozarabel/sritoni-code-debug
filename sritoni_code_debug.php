@@ -110,12 +110,11 @@ function madhu_custom_code_submenu_page_render()
 /**
  *  Given the name of a status as a string the function returns its ID if it exists. If not returns null
  */
-function get_status_id_given_name( string $status_name): ? int
+function get_status_id_given_name( $status_name)
 {
     // get an array of all statuses
     $status_objects = WPSC_Status::find( array( 'items_per_page' => 0 ) )['results'];
 
-    $status_name = "Closed";
 
     foreach ($status_objects as $status_obj)
     {
