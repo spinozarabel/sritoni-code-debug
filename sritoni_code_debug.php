@@ -115,7 +115,7 @@ function get_status_id_given_name( $status_name)
     // get an array of all statuses
     $status_objects = WPSC_Status::find( array( 'items_per_page' => 0 ) )['results'];
 
-    $status_name = "Closed";
+    // $status_name = "Closed";
 
     foreach ($status_objects as $status_obj)
     {
@@ -130,7 +130,7 @@ function get_status_id_given_name( $status_name)
         
         
     }
-    
+
 }
 
 function ticket_details($ticket_id)
