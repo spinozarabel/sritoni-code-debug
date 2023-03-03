@@ -127,10 +127,13 @@ function get_status_id_given_name( $status_name)
 
             //return $status_obj->id;
         }
-        echo '<pre>';
+        else {
+            echo '<pre>';
             print("Could not find the given status name in list of statuses");
             echo  '</pre>';
         // return null;
+        }
+        
     }
 }
 
