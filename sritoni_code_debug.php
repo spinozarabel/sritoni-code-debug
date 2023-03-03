@@ -90,7 +90,7 @@ function madhu_custom_code_submenu_page_render()
             break;
 
         case 'Get_filtered_Ticket_list':
-            change_ticket_status();
+            Get_filtered_Ticket_list();
             break;
         
         default:
@@ -329,5 +329,25 @@ function change_ticket_status()
 
 function Get_filtered_Ticket_list()
 {
+    // get all tickets existing
+    
+    $status_id_of_ticket = 5;
+
+     $filter_array = array(
+        'meta_query' => array(
+                                'relation' => 'AND',
+                                array(
+                                    'slug'    => 'status',
+                                    'compare' => '=',
+                                    'val'     => $status_id_of_ticket,
+                                ),
+                        )
+);
+
+$results = WPSC_Ticket::find($filter_array);
+echo '<pre>';
+print( "All tickets with status id of 5" );
+    print_r($results);
+    echo  '</pre>';
 
 }
