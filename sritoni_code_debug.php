@@ -54,7 +54,9 @@ function madhu_custom_code_submenu_page_render()
             <input type="submit" name="button" 	value="create_new_ticket"/>
             <input type="submit" name="button" 	value="change_ticket_status"/>
             <input type="submit" name="button" 	value="Get_filtered_Ticket_list"/>
+            <input type="submit" name="button" 	value="get_status_id_given_name"/>
             <input type="number" id="ticket_id" name="ticket_id" min="1" max="10000">
+            <input type="text" id="status" name="status" >
         </form>
 
         
@@ -62,6 +64,7 @@ function madhu_custom_code_submenu_page_render()
 
     $button = sanitize_text_field( $_POST['button'] );
     $ticket_id = sanitize_text_field( $_POST['ticket_id'] );
+    $status_name = sanitize_text_field( $_POST['status'] );
 
     switch ($button) 
     {
@@ -92,10 +95,31 @@ function madhu_custom_code_submenu_page_render()
         case 'Get_filtered_Ticket_list':
             Get_filtered_Ticket_list();
             break;
+
+        case 'get_status_id_given_name':
+            get_status_id_given_name($status_name);
+            break;
+        
         
         default:
             // do nothing
             break;
+    }
+}
+
+function get_status_id_given_name($status_name)
+{
+    // get an array of all statuses
+    $statuses = WPSC_Status::find( array( 'items_per_page' => 0 ) )['results'];
+
+    foreach ($statuses as $status_obj)
+    {
+        if ( $status_obj->name == $status_name )
+        {
+            echo '<pre>';
+            print("Status name - " . $status_name . " Corresponds to Status ID: " . $status_obj->id);
+            echo  '</pre>';
+        }
     }
 }
 
@@ -312,7 +336,7 @@ function change_ticket_status()
 
     $ticket_id = 34;
 
-    $desired_status_id = 5;
+    $desired_status_slug = 5;
 
     $ticket = new WPSC_Ticket( $ticket_id );
 
