@@ -124,12 +124,12 @@ function get_status_id_given_name( $status_name)
             print("Status name - " . $status_name . " Corresponds to Status ID: " . $status_obj->id);
             echo  '</pre>';
 
-            return $status_obj->id;
+            //return $status_obj->id;
         }
         echo '<pre>';
             print("Could not find the given status name in list of statuses");
             echo  '</pre>';
-        return null;
+        // return null;
     }
 }
 
