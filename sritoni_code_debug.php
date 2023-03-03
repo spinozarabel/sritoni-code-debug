@@ -64,7 +64,7 @@ function madhu_custom_code_submenu_page_render()
 
     $button = sanitize_text_field( $_POST['button'] );
     $ticket_id = sanitize_text_field( $_POST['ticket_id'] );
-    $status_name = sanitize_text_field( $_POST['status'] );
+    $status_name = wp_strip_all_tags( sanitize_text_field( $_POST['status'] ) );
 
     switch ($button) 
     {
