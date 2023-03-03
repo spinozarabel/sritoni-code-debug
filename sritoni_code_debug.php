@@ -340,9 +340,6 @@ function create_new_ticket()
 function change_ticket_status( int $ticket_id, string $new_status_name )
 {
 
-    $ticket_id = 34;
-
-
 $desired_status_id = get_status_id_given_name( $new_status_name );
 
     $ticket = new WPSC_Ticket( $ticket_id );
