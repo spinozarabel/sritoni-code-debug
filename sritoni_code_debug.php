@@ -89,7 +89,7 @@ function madhu_custom_code_submenu_page_render()
             break;
             
         case 'change_ticket_status':
-            change_ticket_status();
+            change_ticket_status( $ticket_id, $status_name);
             break;
 
         case 'Get_filtered_Ticket_list':
@@ -337,12 +337,13 @@ function create_new_ticket()
 }
 
 
-function change_ticket_status()
+function change_ticket_status( int $ticket_id, string $new_status_name )
 {
 
     $ticket_id = 34;
 
-    $desired_status_slug = 5;
+
+$desired_status_id = get_status_id_given_name( $new_status_name );
 
     $ticket = new WPSC_Ticket( $ticket_id );
 
