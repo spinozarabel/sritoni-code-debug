@@ -125,6 +125,9 @@ function get_status_id_given_name( string $status_name): ? int
 
             return $status_obj->id;
         }
+        echo '<pre>';
+            print("Could not find the given status name in list of statuses");
+            echo  '</pre>';
         return null;
     }
 }
