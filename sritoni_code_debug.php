@@ -117,7 +117,7 @@ function get_status_id_given_name( string $status_name): ? int
 
     foreach ($array_of_status_objects as $status_obj)
     {
-        if ( stripos($status_name,  $status_obj->name) !== false )
+        if ( $status_name == $status_obj->name)
         {
             echo '<pre>';
             print("Status name - " . $status_name . " Corresponds to Status ID: " . $status_obj->id);
