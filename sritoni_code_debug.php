@@ -144,7 +144,7 @@ function madhu_custom_code_submenu_page_render()
         
             if ( $cf_name == $cf->name)
             {
-                echo ("Category name - " . $cf_name . " Corresponds to ID: " . $cf->id);
+                echo ("Custom Field name - " . $cf_name . " Corresponds to ID: " . $cf->id . " and Slug" . $cf->slug);
 
                 $cf_id = $cf->id;
                 
