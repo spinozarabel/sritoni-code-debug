@@ -136,7 +136,7 @@ function madhu_custom_code_submenu_page_render()
         $cf_id = null;    // initialize the return object
 
         // get an array of all statuses
-        $cf_objects = WPSC_Category::find( array( 'items_per_page' => 0 ) )['results'];
+        $cf_objects = WPSC_CF::find( array( 'items_per_page' => 0 ) )['results'];
 
         // $status_name = "Closed";
 
