@@ -124,29 +124,31 @@ function madhu_custom_code_submenu_page_render()
 }
 
 /**
- * 
- */
-function get_category_id_given_name(string  $category_name): ? int
-{
-    // get an array of all statuses
-    $category_objects = WPSC_Category::find( array( 'items_per_page' => 0 ) )['results'];
-
-    // $status_name = "Closed";
-
-    foreach ($category_objects as $category_object)
+     *  Given the name of an existing category, its integer ID is returned if it exists. If not, null is returned
+     */
+    function get_category_id_given_name(string  $category_name): ? int
     {
-        if ( $category_name == $category_object->name)
-        {
-            echo '<pre>';
-            print("Category name - " . $category_name . " Corresponds to Category ID: " . $category_object->id);
-            echo  '</pre>';
+        $category_id = null;    // initialize the return object
 
-            return $category_object->id;
-        } 
+        // get an array of all statuses
+        $category_objects = WPSC_Category::find( array( 'items_per_page' => 0 ) )['results'];
+
+        // $status_name = "Closed";
+
+        foreach ($category_objects as $category_object):
+        
+            if ( $category_name == $category_object->name)
+            {
+                echo ("Category name - " . $category_name . " Corresponds to Category ID: " . $category_object->id);
+
+                $category_id = $category_object->id;
+                
+                break;  // we found our match and so we exit the loop
+            } 
+        endforeach;
+
+        return $category_id;
     }
-
-    return null;
-}
 
 
 
