@@ -65,6 +65,8 @@ function madhu_custom_code_submenu_page_render()
             <input type="submit" name="button" 	value="change_ticket_status"/>
             <input type="submit" name="button" 	value="Get_filtered_Ticket_list"/>
             <input type="submit" name="button" 	value="get_status_id_given_name"/>
+            <input type="submit" name="button" 	value="get_category_id_given_name"/>
+
             <input type="number" id="ticket_id" name="ticket_id" min="1" max="10000">
             <input type="text" id="status" name="status" >
         </form>
@@ -109,6 +111,10 @@ function madhu_custom_code_submenu_page_render()
         case 'get_status_id_given_name':
             get_status_id_given_name($status_name);
             break;
+
+        case 'get_category_id_given_name':
+            get_category_id_given_name($status_name);
+            break;    
         
         
         default:
@@ -116,6 +122,35 @@ function madhu_custom_code_submenu_page_render()
             break;
     }
 }
+
+/**
+ * 
+ */
+function get_category_id_given_name(string  $category_name): ? int
+{
+    // get an array of all statuses
+    $category_objects = WPSC_Category::find( array( 'items_per_page' => 0 ) )['results'];
+
+    // $status_name = "Closed";
+
+    foreach ($category_objects as $category_object)
+    {
+        if ( $category_name == $category_object->name)
+        {
+            echo '<pre>';
+            print("Category name - " . $category_name . " Corresponds to Category ID: " . $category_object->id);
+            echo  '</pre>';
+
+            return $category_object->id;
+        } 
+    }
+
+    return null;
+}
+
+
+
+
 
 /**
  *  Given the name of a status as a string the function returns its ID if it exists. If not returns null
@@ -234,7 +269,7 @@ function statuses()
 
 function categories()
 {
-    // Get all the statuses
+    // Get all the categories
     $categories = WPSC_Category::find( array( 'items_per_page' => 0 ) )['results'];
     foreach ( $categories as $category ) {
         echo '<pre>';
