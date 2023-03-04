@@ -126,6 +126,35 @@ function madhu_custom_code_submenu_page_render()
 /**
      *  Given the name of an existing category, its integer ID is returned if it exists. If not, null is returned
      */
+    function get_cf_id_given_name(string  $cf_name): ? int
+    {
+        $cf_id = null;    // initialize the return object
+
+        // get an array of all statuses
+        $cf_objects = WPSC_Category::find( array( 'items_per_page' => 0 ) )['results'];
+
+        // $status_name = "Closed";
+
+        foreach ($cf_objects as $cf):
+        
+            if ( $cf_name == $cf->name)
+            {
+                echo ("Category name - " . $cf_name . " Corresponds to ID: " . $cf->id);
+
+                $cf_id = $cf->id;
+                
+                break;  // we found our match and so we exit the loop
+            } 
+        endforeach;
+
+        return $cf_id;
+    }
+
+
+
+/**
+     *  Given the name of an existing category, its integer ID is returned if it exists. If not, null is returned
+     */
     function get_category_id_given_name(string  $category_name): ? int
     {
         $category_id = null;    // initialize the return object
