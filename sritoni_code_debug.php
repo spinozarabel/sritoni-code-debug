@@ -66,6 +66,7 @@ function madhu_custom_code_submenu_page_render()
             <input type="submit" name="button" 	value="Get_filtered_Ticket_list"/>
             <input type="submit" name="button" 	value="get_status_id_given_name"/>
             <input type="submit" name="button" 	value="get_category_id_given_name"/>
+            <input type="submit" name="button" 	value="get_cf_id_given_name"/>
 
             <input type="number" id="ticket_id" name="ticket_id" min="1" max="10000">
             <input type="text" id="status" name="status" >
@@ -114,7 +115,11 @@ function madhu_custom_code_submenu_page_render()
 
         case 'get_category_id_given_name':
             get_category_id_given_name($status_name);
-            break;    
+            break;  
+            
+        case 'get_cf_id_given_name':
+            get_cf_id_given_name($status_name);
+            break;
         
         
         default:
