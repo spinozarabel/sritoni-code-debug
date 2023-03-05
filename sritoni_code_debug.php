@@ -23,9 +23,10 @@ add_action( 'wpsc_change_ticket_status',  'my_wpsc_change_ticket_status_callback
 
 function my_wpsc_change_ticket_status_callback( $ticket, $prev, $new, $customer_id)
 {
+    $cf_slug = "cust_25";
     echo '<pre>';
             print("Ticket ID - " . $ticket->id . " Old Status ID: " . $prev . " was changed to new status ID: " . $new);
-            print("Ticket cf student-first-name value is: " . $ticket->cust_25);
+            print("Ticket cf student-first-name value is: " . $ticket->$cf_slug);
             print( "This information was derived from wpsc_change_status action callback");
             echo  '</pre>';
 }
