@@ -449,11 +449,11 @@ $desired_status_id = get_status_id_given_name( $new_status_name );
     // $ticket->save();
 }
 
-function Get_filtered_Ticket_list()
+function Get_filtered_Ticket_list( $status_name )
 {
     // get all tickets existing
     
-    $status_id_of_ticket = 5;
+    $status_id_of_ticket = get_status_id_given_name( $status_name );
 
      $filter_array = array(
         'meta_query' => array(
