@@ -110,7 +110,7 @@ function madhu_custom_code_submenu_page_render()
             break;
 
         case 'Get_filtered_Ticket_list':
-            Get_filtered_Ticket_list();
+            Get_filtered_Ticket_list($status_name);
             break;
 
         case 'get_status_id_given_name':
